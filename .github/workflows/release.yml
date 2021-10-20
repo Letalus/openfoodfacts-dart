@@ -56,6 +56,7 @@ jobs:
       with:
           skipTests: true # Skip unit tests run
           credentialJson: "${{ secrets.PUB_DEV_CREDENTIALS_JSON }}"
+          force: "true"
 
 
 
