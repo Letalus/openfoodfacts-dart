@@ -6,10 +6,12 @@ on:
   push:
     branches:
       - master
+      - "release-test"
 
 
 
 jobs:
+
 
   # To not create a new release when the current version is already on pub.dev
   pre_job:
@@ -50,18 +52,33 @@ jobs:
     - name: Analyze project
       run: dart analyze .
 
-    - name: Release on pub.dev
-      uses: k-paxian/dart-package-publisher@v1.3
-      with:
-          skipTests: true # Skip unit tests run
-          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
-          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+    - name: Setup credentials
+      run: | 
+        mkdir -p ~/.pub-cache 
+        cat <<EOF > ~/.pub-cache/credentials.json
+        {
+          "accessToken":"${{ secrets.OAUTH_ACCESS_TOKEN }}",
+          "refreshToken":"${{ secrets.OAUTH_REFRESH_TOKEN }}",
+          "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+          "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ]
+        }
+        EOF
 
-    - name: Create Github Release
-      uses: softprops/action-gh-release@v1
-      with:
-          draft: false
-          tag_name: ${{ needs.pre_job.outputs.localVersion }}
-          body: "Release notes: https://pub.dev/packages/openfoodfacts/changelog"
+    - name: Publish package
+      run: pub publish -f
+
+#    - name: Release on pub.dev
+#      uses: k-paxian/dart-package-publisher@v1.3
+#      with:
+#          skipTests: true # Skip unit tests run
+#          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+#          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+
+#    - name: Create Github Release
+#      uses: softprops/action-gh-release@v1
+#      with:
+#          draft: false
+#          tag_name: ${{ needs.pre_job.outputs.localVersion }}
+#          body: "Release notes: https://pub.dev/packages/openfoodfacts/changelog"
 
 
