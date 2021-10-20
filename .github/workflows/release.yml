@@ -52,7 +52,7 @@ jobs:
       run: dart analyze .
 
     - name: Release on pub.dev
-      uses: k-paxian/dart-package-publisher@v1.3
+      uses: k-paxian/dart-package-publisher@master
       with:
           skipTests: true # Skip unit tests run
           credentialJson: "${{ secrets.PUB_DEV_CREDENTIALS_JSON }}"
