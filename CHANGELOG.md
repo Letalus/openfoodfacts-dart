@@ -1,6 +1,8 @@
-## [1.3.8] - 20.10.2021
-- Small change in KnowledgePanel API.
-
+## [1.3.9] - 28.10.2021
+- Add additives, countries, and languages taxonomy APIs
+- Refactored the use of QueryType
+## [1.3.8] - 22.10.2021
+- More updates to KnowledgePanel APIs
 ## [1.3.7] - 12.10.2021
 - Update KnowledgePanel API to comply to the latest Backend changes.
 ## [1.3.6] - 10.10.2021
@@ -151,7 +153,7 @@
 
 ## [0.3.0] - 30.04.2020
 - Support for more than 180 languages
-- New query / search principle - _ProductQueryConfiguration_ : 
+- New query / search principle - _ProductQueryConfiguration_ :
 In order to optimize the queries you can now set the return language and fields list through _ProductQueryConfiguration_ (Default Behaviour)
 - _getProductRaw()_ is still available (Old Behaviour)
 
@@ -209,24 +211,24 @@ In order to optimize the queries you can now set the return language and fields 
 - Bugfix: ingredients percent json parse error fixed (string vs. int)
 
 ## [0.1.5] - 28.05.2019
-- *getProduct()* fixed null-pointer for non existing product. 
+- *getProduct()* fixed null-pointer for non existing product.
 - *searchProducts()* english URL now working. (-> world)
 
 ## [0.1.4] - 19.05.2019
 - *getProduct()* chooses a language dependent host (world, de, ..)
-- Bugfix: *getProduct()* won't fail if no images are provided 
+- Bugfix: *getProduct()* won't fail if no images are provided
 
 ## [0.1.3] - 5.05.2019
 - *searchProducts()* with language support
 
 ## [0.1.2] - 5.05.2019
-- Ingredients.dart more type safe (THX to dynamic) 
+- Ingredients.dart more type safe (THX to dynamic)
 
 ## [0.1.1] - 5.05.2019
 - class SearchResult now visible
 
 ## [0.1.0] - 4.05.2019.
-- service method *searchProducts()* implemented. 
+- service method *searchProducts()* implemented.
 
 ## [0.0.10] - 28.03.2019
 the test package dependency has been moved to flutter_test.
