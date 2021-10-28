@@ -1,3 +1,5 @@
+## [1.3.9] - 28.10.2021
+- Refactored the use of QueryType
 ## [1.3.8] - 22.10.2021
 - More updates to KnowledgePanel APIs
 ## [1.3.7] - 12.10.2021
