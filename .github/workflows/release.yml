@@ -1,0 +1,40 @@
+name: Publish to Pub.dev
+
+on:
+  push:
+    branches:
+      - master
+      - "release-test-3"
+
+
+
+jobs:
+
+  release:
+    #needs: pre_job
+    #if: ${{ needs.pre_job.outputs.localVersion != needs.pre_job.outputs.remoteVersion }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Chekout code
+        uses: actions/checkout@v2
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get .
+
+      - name: Check for formatting issues (run "flutter format . ")
+        run: dart format .
+
+      - name: Analyze project
+        run: dart analyze .
+
+      - name: Setup credentials
+        run: |
+          mkdir -p ~/.pub-cache
+          echo ${{ secrets.PUB_DEV_CREDENTIALS_JSON  }} > ~/.pub-cache/credentials.json
+
+      - name: Publish package
+        run: pub publish -f
