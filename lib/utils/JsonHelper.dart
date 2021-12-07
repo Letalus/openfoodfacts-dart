@@ -91,8 +91,10 @@ class JsonHelper {
           var numberObject = sizesObject[number] as Map<String, dynamic>?;
           if (numberObject == null) continue;
 
+          print('fieldObject: $fieldObject');
+
           var image =
-              ProductImage(field: field, size: size, language: lang, rev: rev);
+              ProductImage(field: field, size: size, language: lang, rev: rev, url: fieldObject['url']);
           imageList.add(image);
         }
       }
